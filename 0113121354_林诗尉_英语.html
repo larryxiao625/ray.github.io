@@ -1,0 +1,1198 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1">
+    <title>学生成绩分析报告</title>
+    <!-- 图标主题信息 -->
+    <script type="text/javascript" src="stu_ameqp_report.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <script type="text/javascript">
+
+        //清空数据表格下拉框数据
+        function CleargridDll(id) {
+            $(id).combogrid('setValues', []);
+            $(id).combogrid('setValue', '');
+
+        }
+
+        $(function () {
+            AddRepStu(null);
+            AddRepDif(null);
+            AddRepSubOffer(null);
+            AddRepRadar(null);
+            LoadStuData();
+
+        });
+
+
+
+
+        function GetImgShowOmrUrl(exaSubSn, exaOmrNo, exaOmrSN) {
+            return '<a href=\"javascript:void(0);\" onclick=\"ImgOmrShow(' + exaOmrSN + ')\" >' + exaOmrNo + '</a>';
+
+        }
+        ///GetShowQueNo(item[i].exaQueNo) + '</td><td>'//题号
+        //题号
+        function GetShowQueNo(exaSubSn, exaQueNo, exaQueSN) {
+            if (exaSubSn > 0) {
+                //if (exaQueNo.indexOf("_") == -1) {
+                return GetImgShowUrl(exaSubSn, exaQueNo, exaQueSN);
+                //}
+            }
+            return exaQueNo;
+        }
+
+
+        function GetShowOmrNo(exaSubSn, exaOmrNo, exaOmrSN) {
+            if (exaSubSn > 0) {
+
+                return GetImgShowOmrUrl(exaSubSn, exaOmrNo, exaOmrSN);
+
+            }
+            return exaOmrNo;
+        }
+
+
+
+        //加载学生信息记录
+        function LoadStuData() {
+            var data = eval('({"Data":{"difficulty":[{"ND":"容易","ExaAvg":0.0,"ExaMax":0.0,"stuFZ":0.0},{"ND":"偏易","ExaAvg":0.0,"ExaMax":0.0,"stuFZ":0.0},{"ND":"中等","ExaAvg":0.0,"ExaMax":0.0,"stuFZ":0.0},{"ND":"偏难","ExaAvg":0.0,"ExaMax":0.0,"stuFZ":0.0},{"ND":"较难","ExaAvg":0.0,"ExaMax":0.0,"stuFZ":0.0}],"tab":{"ds":[{"exaSubSN":80,"exaSubScore":150.0,"exaSubScore1":79.0,"exaSubScore2":71.0,"exaSubName":"英语","scoScore":123.0,"scoScore1":65.0,"scoScore2":58.0,"scoNotice":null,"scoRScore":82.00,"scoExaDifficulty":0.6,"scoExaProportion1":127.0,"scoExaProportion2":119.0,"scoExaProportion3":106.0,"scoExaProportion4":69.0,"scoExaProportion5":28.0,"scoOffer1":-4.0,"scoOffer2":4.0,"scoOffer3":17.0,"scoOffer4":54.0,"scoOffer5":95.0,"scoPosClass":null,"scoPosArea":2598,"scoPosExam":4420,"scoStdScore":608.0,"scoPerExam":0.8349219364,"scoZExam":1.08,"scoRank":"E","scoSAvgExam":34.51,"scoBAvgExam":134.51,"scoPosSchool":185,"scoExaAvg1":49.33,"scoSchAvg1":65.64,"scoClaAvg1":null,"scoExaMax1":79.0,"scoExaAvg2":42.14,"scoSchAvg2":54.22,"scoClaAvg2":null,"scoExaMax2":69.0}],"ds1":[],"ds2":[],"ds3":[]},"sec":[{"exaSubSN":80,"secTitle":"[0,10)","secValueL":0.0,"secValueH":10.0,"secCount":61,"sumCount":61},{"exaSubSN":80,"secTitle":"(*,0)","secValueL":0.0,"secValueH":0.0,"secCount":0,"sumCount":0},{"exaSubSN":80,"secTitle":"[10,20)","secValueL":10.0,"secValueH":20.0,"secCount":167,"sumCount":167},{"exaSubSN":80,"secTitle":"[20,30)","secValueL":20.0,"secValueH":30.0,"secCount":444,"sumCount":444},{"exaSubSN":80,"secTitle":"[30,40)","secValueL":30.0,"secValueH":40.0,"secCount":771,"sumCount":771},{"exaSubSN":80,"secTitle":"[40,50)","secValueL":40.0,"secValueH":50.0,"secCount":1256,"sumCount":1256},{"exaSubSN":80,"secTitle":"[50,60)","secValueL":50.0,"secValueH":60.0,"secCount":1987,"sumCount":1987},{"exaSubSN":80,"secTitle":"[60,70)","secValueL":60.0,"secValueH":70.0,"secCount":2454,"sumCount":2454},{"exaSubSN":80,"secTitle":"[70,80)","secValueL":70.0,"secValueH":80.0,"secCount":2814,"sumCount":2814},{"exaSubSN":80,"secTitle":"[80,90)","secValueL":80.0,"secValueH":90.0,"secCount":3084,"sumCount":3084},{"exaSubSN":80,"secTitle":"[90,100)","secValueL":90.0,"secValueH":100.0,"secCount":3312,"sumCount":3312},{"exaSubSN":80,"secTitle":"[100,110)","secValueL":100.0,"secValueH":110.0,"secCount":3477,"sumCount":3477},{"exaSubSN":80,"secTitle":"[110,120)","secValueL":110.0,"secValueH":120.0,"secCount":3567,"sumCount":3567},{"exaSubSN":80,"secTitle":"[120,130)","secValueL":120.0,"secValueH":130.0,"secCount":3459,"sumCount":3459},{"exaSubSN":80,"secTitle":"[130,140)","secValueL":130.0,"secValueH":140.0,"secCount":2171,"sumCount":2171},{"exaSubSN":80,"secTitle":"[140,*]","secValueL":140.0,"secValueH":null,"secCount":247,"sumCount":247}],"radar":[{"exaSubSN":66,"exaSubScore":150.0,"scoStdScore":637.0,"scoZExam":1.37,"exaSubName":"语文"},{"exaSubSN":70,"exaSubScore":300.0,"scoStdScore":660.0,"scoZExam":1.60,"exaSubName":"理综"},{"exaSubSN":79,"exaSubScore":15.0,"scoStdScore":573.0,"scoZExam":0.73,"exaSubName":"英语口语"},{"exaSubSN":77,"exaSubScore":100.0,"scoStdScore":626.1,"scoZExam":1.26,"exaSubName":"化学"},{"exaSubSN":76,"exaSubScore":110.0,"scoStdScore":647.0,"scoZExam":1.47,"exaSubName":"物理"},{"exaSubSN":80,"exaSubScore":150.0,"scoStdScore":608.0,"scoZExam":1.08,"exaSubName":"英语"},{"exaSubSN":71,"exaSubScore":120.0,"scoStdScore":609.4,"scoZExam":1.09,"exaSubName":"英语笔试"},{"exaSubSN":68,"exaSubScore":150.0,"scoStdScore":661.8,"scoZExam":1.62,"exaSubName":"理数"},{"exaSubSN":78,"exaSubScore":90.0,"scoStdScore":654.7,"scoZExam":1.55,"exaSubName":"生物"}]},"NextUrl":null,"Msg":null,"State":"OK"})');
+            LoadStuDataOK(data);
+        }
+
+        //加载学生信息记录
+        function LoadStuDataOK(data) {
+            ClearStuData();
+            if (!data) {
+                //isGetStuScoRpt = true;
+                //pdfCreate(false);
+                return;
+            }
+
+            var tab = data.Data.tab;
+
+
+            var scoRank = "A";
+            var scoConclusion = "学习良好稳定性高";
+            var subInfo = tab.ds;
+            if (subInfo.length <= 0) {
+                //alertInfo("无数据!");
+                data = null;
+                //isGetStuScoRpt = true;
+                //pdfCreate(false);
+                return;
+            }
+            var subInfoCurrent = subInfo[subInfo.length - 1];
+            var stuScore = subInfoCurrent.scoScore;//学生得分
+            var exaSubScore = subInfoCurrent.exaSubScore;//满分值
+            var scoNotice = subInfoCurrent.scoNotice;//注意系数
+            var scoRScore = subInfoCurrent.scoRScore;//学生科目得分率
+
+            if (!scoRScore) {
+                scoRScore = 0;
+            }
+            if (scoRScore > 75) {
+                if (scoNotice) {
+                    scoRank = "A'";
+                    scoConclusion = "粗心大意，不细心造成错误";
+
+                }
+            } else if (scoRScore > 50) {
+
+                if (scoNotice) {
+                    scoRank = "B'";
+                    scoConclusion = "偶尔粗心，准备不充分，需要再努力";
+
+                } else {
+                    scoRank = "B";
+                    scoConclusion = "学习尚稳定，需要再用功一点";
+                }
+
+            } else {
+                if (scoNotice) {
+                    scoRank = "C'";
+                    scoConclusion = "学习很不稳定，对考试内容没有准备";
+
+                } else {
+                    scoRank = "C";
+                    scoConclusion = "学历不足，学习不够充分，需要更加努力用功";
+                }
+
+            }
+
+            if (subInfoCurrent.exaSubSN == 0) {
+                $('#sp_eva').html("【得分:" + stuScore + "分  总结:" + scoConclusion + "】");
+
+            } else {
+                $('#sp_eva').html("【得分:" + stuScore + "分 (等级：" + subInfoCurrent.scoRank + ") 总结:" + scoConclusion + "】");
+
+
+            }
+            var subTitle = " &nbsp;【 " + subInfoCurrent.exaSubName + "全卷  &nbsp;满分值:" + exaSubScore + "分 &nbsp;  &nbsp;实得分" + stuScore + "】";
+            if (subInfoCurrent.exaSubSN == 0) {
+                subTitle = " &nbsp; 【" + subInfoCurrent.exaSubName + "全卷  &nbsp; 实得分" + stuScore + "】";
+            }
+
+
+            $("#div_sub_t").html(subTitle);
+
+            var scoCenterRanking = 'True';
+            if (subInfoCurrent.exaSubSN > 0) {
+
+                $("#tab_sub").append("<tr align='center'>" +
+                     "<td>" + subInfoCurrent.exaSubName + "</td>" +
+                      "<td>" + subInfoCurrent.scoScore + "</td>" +
+                      "<td>" + subInfoCurrent.scoStdScore + "</td>" +
+                      "<td>" + subInfoCurrent.scoPerExam + "</td>" +
+                      "<td>" + getToFixedL(subInfoCurrent.scoZExam, 2) + "</td>" +
+                      "<td>" + (subInfoCurrent.exaSubSN == 0 ? "" : subInfoCurrent.scoRank) + "</td>" +
+                      "<td>" + getToFixed(subInfoCurrent.scoSAvgExam) + "</td>" +
+                      "<td>" + getToFixed(subInfoCurrent.scoBAvgExam) + "</td>" +
+                      "<td>" + (scoCenterRanking.toLocaleLowerCase() == "true" ? subInfoCurrent.scoPosClass ? subInfoCurrent.scoPosClass : "" : "") + "</td>" +
+                      "<td>" + (scoCenterRanking.toLocaleLowerCase() == "true" ? subInfoCurrent.scoPosSchool ? subInfoCurrent.scoPosSchool : "" : "") + "</td>" +
+                      "<td>" + (scoCenterRanking.toLocaleLowerCase() == "true" ? subInfoCurrent.scoPosExam : "") + "</td>" +
+                      "</tr>");
+            } else {
+                for (var x = 0; x < subInfo.length; x++) {
+
+                    $("#tab_sub").append("<tr align='center'>" +
+                         "<td>" + subInfo[x].exaSubName + "</td>" +
+                        "<td>" + subInfo[x].scoScore + "</td>" +
+                        "<td>" + subInfo[x].scoStdScore + "</td>" +
+                        "<td>" + subInfo[x].scoPerExam + "</td>" +
+                        "<td>" + getToFixedL(subInfo[x].scoZExam, 2) + "</td>" +
+                        "<td>" + (subInfo[x].exaSubSN == 0 ? "" : subInfo[x].scoRank) + "</td>" +
+                        "<td>" + getToFixed(subInfo[x].scoSAvgExam) + "</td>" +
+                        "<td>" + getToFixed(subInfo[x].scoBAvgExam) + "</td>" +
+                        "<td>" + (scoCenterRanking.toLocaleLowerCase() == "true" ? subInfo[x].scoPosClass ? subInfo[x].scoPosClass : "" : "") + "</td>" +
+                        "<td>" + (scoCenterRanking.toLocaleLowerCase() == "true" ? subInfo[x].scoPosSchool ? subInfo[x].scoPosSchool : "" : "") + "</td>" +
+                        "<td>" + (scoCenterRanking.toLocaleLowerCase() == "true" ? subInfo[x].scoPosExam : "") + "</td>" +
+                        "</tr>");
+                }
+            }
+
+            var scoOffer1 = subInfoCurrent.scoOffer1;
+            var scoOffer2 = subInfoCurrent.scoOffer2;
+            var scoOffer3 = subInfoCurrent.scoOffer3;
+            var scoOffer4 = subInfoCurrent.scoOffer4;
+            var scoOffer5 = subInfoCurrent.scoOffer5;
+
+            //满分值：68分　　班均分：52分　　全体均分：51分　　最高分：65分　　实得分：63分
+            if (scoOffer1 != null) {
+                var subCon_myData = { xAxis_data: [], title_text: "", series_offer: [], series_Proportion: [], "stuScore": stuScore };
+                subCon_myData.series_offer[0] = scoOffer1;
+                subCon_myData.series_offer[1] = scoOffer2;
+                subCon_myData.series_offer[2] = scoOffer3;
+                subCon_myData.series_offer[3] = scoOffer4;
+                subCon_myData.series_offer[4] = scoOffer5;
+                subCon_myData.series_Proportion[0] = subInfoCurrent.scoExaProportion1;
+                subCon_myData.series_Proportion[1] = subInfoCurrent.scoExaProportion2;
+                subCon_myData.series_Proportion[2] = subInfoCurrent.scoExaProportion3;
+                subCon_myData.series_Proportion[3] = subInfoCurrent.scoExaProportion4;
+                subCon_myData.series_Proportion[4] = subInfoCurrent.scoExaProportion5;
+                subCon_myData.xAxis_data[0] = "目标1";
+                subCon_myData.xAxis_data[1] = "目标2";
+                subCon_myData.xAxis_data[2] = "目标3";
+                subCon_myData.xAxis_data[3] = "目标4";
+                subCon_myData.xAxis_data[4] = "目标5";
+                subCon_myData.title_text = subInfoCurrent.exaSubName;
+
+                AddRepSubOffer(subCon_myData);
+            } else {
+                AddRepSubOffer(null);
+            }
+
+            //等级
+            var sec = data.Data.sec;
+            var sce_myData = { xAxis_data: [], series_stu: [], markPoint: { xAxis: 0, yAxis: 0, value: "" } };
+            for (var i = 0; i < sec.length; i++) {
+                sce_myData.series_stu[i] = sec[i].sumCount;
+                var secValueH = sec[i].secValueH;
+                if (!secValueH) {
+                    secValueH = exaSubScore;
+                }
+                sce_myData.xAxis_data[i] = secValueH;
+                if (stuScore >= sec[i].secValueL && stuScore <= secValueH) {
+                    sce_myData.markPoint.xAxis = i;
+                    sce_myData.markPoint.yAxis = sec[i].sumCount;
+                    sce_myData.markPoint.value = stuScore;
+                }
+            }
+            AddRepStu(sce_myData);
+
+            //雷达图
+            var radar = data.Data.radar;
+            var radar_myData = { polar_indicator: [], series_z: [] };
+            for (var i = 0; i < radar.length; i++) {
+                radar_myData.polar_indicator[i] = { text: radar[i].exaSubName, min: -4, max: 4 };
+                //radar_myData.polar_indicator[i] = { text: radar[i].exaSubName };
+                radar_myData.series_z[i] = radar[i].scoZExam;
+            }
+            AddRepRadar(radar_myData);
+
+            if (subInfoCurrent.exaSubSN == 0) {
+                data = null;
+                //隐藏 知识点、客观题、主观题
+                $("#div_kno").css("display", "none");
+                $("#tab_kno").css("display", "none");
+                $("#div_que_omr").css("display", "none");
+                $("#tab_que_omr").css("display", "none");
+                $("#div_que_item").css("display", "none");
+                $("#tab_que_item").css("display", "none");
+                return;
+            } else {
+                //显示 知识点、客观题、主观题
+                $("#div_kno").css("display", "");
+                $("#tab_kno").css("display", "");
+                $("#div_que_omr").css("display", "");
+                $("#tab_que_omr").css("display", "");
+                $("#div_que_item").css("display", "");
+                $("#tab_que_item").css("display", "");
+            }
+
+            var kno = tab.ds1;
+
+            for (var i = 0; i < kno.length; i++) {
+
+                var trColor = "color:black";
+                var scoColor = "";
+                var knoStandardAvg = kno[i].knoStandardAvg ? parseFloat(kno[i].knoStandardAvg) : 0;
+                var knoStuScore = kno[i].knoStuScore ? parseFloat(kno[i].knoStuScore) : 0;
+                if (knoStuScore < knoStandardAvg) {
+                    trColor = "color:red;";
+                    scoColor = "font-weight:bold;";
+                }
+
+
+                //知识点、满分值、难度、学生得分、学生得分率、Z分数、班级均分、学校均分、全体均分、知识点达标分数；
+                $('#tab_kno').append('<tr  align="center" style="' + trColor + '"><td>'
+                    + kno[i].knoName + '</td><td style="text-align:right">'//知识点
+                    + getToFixed(kno[i].knoExaMax) + '&nbsp;</td><td>'//满分值
+                    + kno[i].ND + '</td><td style="text-align:right;' + scoColor + '">'//难度
+                    + getToFixed(kno[i].knoStuScore) + '&nbsp;</td><td style="text-align:right">'//学生得分
+                    + getToFixed(kno[i].knoStuRScore) + '&nbsp;</td><td style="text-align:right">'//学生得分率
+                    + getToFixedL(kno[i].knoStuZExam, 2) + '&nbsp;</td><td style="text-align:right">'//Z分数
+                    + getToFixed(kno[i].knoClaAvg) + '&nbsp;</td><td style="text-align:right">'//班级均分
+                    + getToFixed(kno[i].knoSchAvg) + '&nbsp;</td><td style="text-align:right">'//校均分
+                    + getToFixed(kno[i].knoExaAvg) + '&nbsp;</td><td style="text-align:right;' + scoColor + '">'//全体均分
+                + (kno[i].knoStandardAvg ? kno[i].knoStandardAvg : "") + '&nbsp;</td></tr>');//知识点达标分数
+            }
+
+            var exaSubSN = 0;
+            var omr = tab.ds2;
+            var exaOmrScoreSum = 0;//满分
+            var omrClaAvgSum = 0;//班均分
+            var omrExaAvgSum = 0;//全体均分
+            var omrExaMaxSum = 0;//最高分
+            var omrStuScoreSum = 0;//实得分
+            //console.log(omr)
+            for (var i = 0; i < omr.length; i++) {
+                var YC = '';
+                if (omr[i].omrStuNotice != null) {
+                    if ((omr[i].omrStuNotice.toString() + "").toLowerCase() == "true")
+                        YC = '<span class="important">注意</span>';
+                }
+                var trColor = "color:black";
+                var scoColor = "";
+                var omrStandardAvg = omr[i].omrStandardAvg ? parseFloat(omr[i].omrStandardAvg) : 0;
+                var omrStuScore = omr[i].omrStuScore ? parseFloat(omr[i].omrStuScore) : 0;
+                if (omrStuScore < omrStandardAvg) {
+                    trColor = "color:red";
+                    scoColor = "font-weight:bold;";
+                }
+                $('#tab_que_omr').append('<tr  align="center" style="' + trColor + '"><td>'
+                    + GetShowOmrNo(exaSubSN, omr[i].exaOmrNo, omr[i].exaOmrSN) + '</td><td>'//题号
+                    + omr[i].exaOmrSolution + '</td><td style="text-align:right">'//答案
+                    + getToFixed(omr[i].exaOmrScore) + '&nbsp;</td><td>'//满分
+                    + omr[i].omrStuAnswer + '&nbsp;</td><td style="text-align:right;' + scoColor + '">'//选择
+                    + getToFixed(omr[i].omrStuScore) + '&nbsp;</td><td style="text-align:right">'//得分
+                    + getToFixed(omr[i].omrClaAvg) + '&nbsp;</td><td style="text-align:right">'//班均分
+                    + getToFixed(omr[i].omrSchAvg) + '&nbsp;</td><td style="text-align:right">'//校均分
+                    + getToFixed(omr[i].omrExaAvg) + '&nbsp;</td><td>'//全体均分
+                    + omr[i].ND + '</td><td>'
+                    + getVal(omr[i].knoName) + '</td><td>'
+                    + omr[i].ZW + '</td><td>'
+                     + YC + '</td><td style="text-align:right;' + scoColor + '">'//异常情况
+                 + (omr[i].omrStandardAvg ? omr[i].omrStandardAvg : "") + '</td>'//试题达标分数
+                    + '</tr>');
+                omrClaAvgSum += omr[i].omrClaAvg;
+                omrExaAvgSum += omr[i].omrExaAvg;
+                omrExaMaxSum += omr[i].omrExaMax;
+
+            }
+            exaOmrScoreSum = subInfoCurrent.exaSubScore1;//客观题满分
+            omrStuScoreSum = subInfoCurrent.scoScore1;//学生客观题得分
+
+            //1、2卷的班级、全体平均分、最高分，以前是从各平均分里累加，后改成从数据库里读取(by weiy)
+            omrClaAvgSum = subInfoCurrent.scoClaAvg1;
+            omrExaAvgSum = subInfoCurrent.scoExaAvg1;
+            omrExaMaxSum = subInfoCurrent.scoExaMax1;
+
+
+            $("#sp_que_omr").html("&nbsp;【客观题  &nbsp; &nbsp; 满分值:"
+                + getToFixedL(exaOmrScoreSum, 2) + " &nbsp;&nbsp; 班均分："
+                + getToFixedL(omrClaAvgSum, 2) + "分 &nbsp;&nbsp; 全体均分："
+                + getToFixedL(omrExaAvgSum, 2) + "分 &nbsp;&nbsp;最高分："
+                + getToFixedL(omrExaMaxSum, 2) + "分 &nbsp;&nbsp; 实得分："
+                + getToFixedL(omrStuScoreSum, 2) + "分 &nbsp;&nbsp; 建议：红色的试题需要在后期加强训练！】");
+
+            //客观题　　满分值：32分　　班均分：25分　　全体均分：21分　　最高分：32分　　实得分：29分
+            var item = tab.ds3;
+            var exaQueScoreSum = 0;//满分
+            var queClaAvgSum = 0;//班均分
+            var queExaAvgSum = 0;//全体均分
+            var queExaMaxSum = 0;//最高分
+            var queStuScoreSum = 0;//实得分
+            for (var i = 0; i < item.length; i++) {
+                var YC = '';
+                if (item[i].queStuNotice != null) {
+                    if ((item[i].queStuNotice + "").toLowerCase() == "true")
+                        YC = '<span class="important">注意</span>';
+                }
+                var trColor = "color:black";
+                var scoColor = "";
+                var queStandardAvg = item[i].queStandardAvg ? parseFloat(item[i].queStandardAvg) : 0;
+                var queStuScore = item[i].queStuScore ? parseFloat(item[i].queStuScore) : 0;
+                if (queStuScore < queStandardAvg) {
+                    trColor = "color:red";
+                    scoColor = "font-weight:bold;";
+                }
+                $('#tab_que_item').append('<tr  align="center" style="' + trColor + '"><td>'
+                    + GetShowQueNo(exaSubSN, item[i].exaQueNo, item[i].exaQueSN) + '</td><td>'//题号
+                    + getVal(item[i].exaPoiNo) + '</td><td style="text-align:right">'//小题号
+                    + getToFixed(item[i].exaQueScore) + '&nbsp;</td><td style="text-align:right">'//满分 
+                    + getToFixed(item[i].queExaMax) + '&nbsp;</td><td style="text-align:right;' + scoColor + '">'//最高分
+                    + getToFixed(item[i].queStuScore) + '&nbsp;</td><td style="text-align:right">'//得分
+                    + getToFixed(item[i].queClaAvg) + '&nbsp;</td><td style="text-align:right">'//班均分
+                    + getToFixed(item[i].queSchAvg) + '&nbsp;</td><td style="text-align:right">'//校均分
+                    + getToFixed(item[i].queExaAvg) + '&nbsp;</td><td>'//全体均分
+                    + item[i].ND + '</td><td>'//难度
+                    + getVal(item[i].knoName) + '</td><td>'//知识点说明
+                    + item[i].ZW + '</td><td>'//掌握情况
+                     + YC + '</td><td style="text-align:right;' + scoColor + '">'
+                 + (item[i].queStandardAvg ? item[i].queStandardAvg : "") + '</td>'//试题达标分数
+                    + '</tr>');
+                if (item[i].exaPoiNo == null) {
+                    queClaAvgSum += item[i].queClaAvg;
+                    queExaAvgSum += item[i].queExaAvg;
+                    queExaMaxSum += item[i].queExaMax;
+                }
+            }
+            exaQueScoreSum = subInfoCurrent.exaSubScore2;//主观满分得分
+            queStuScoreSum = subInfoCurrent.scoScore2;//学生主观题得分
+
+            queClaAvgSum = subInfoCurrent.scoClaAvg2;
+            queExaAvgSum = subInfoCurrent.scoExaAvg2;
+            queExaMaxSum = subInfoCurrent.scoExaMax2;
+
+            $("#sp_que_item").html("&nbsp;【主观题  &nbsp; &nbsp; 满分值:"
+                + getToFixedL(exaQueScoreSum, 2) + " &nbsp;&nbsp; 班均分："
+                + getToFixedL(queClaAvgSum, 2) + "分 &nbsp;&nbsp; 全体均分："
+                + getToFixedL(queExaAvgSum, 2) + "分 &nbsp;&nbsp;最高分："
+                + getToFixedL(queExaMaxSum, 2) + "分 &nbsp;&nbsp; 实得分："
+                + getToFixedL(queStuScoreSum, 2) + "分 &nbsp;&nbsp; 建议：红色的试题需要在后期加强训练！】");
+
+            var def_myData = { xAxis_data: [], series_stu: [], series_difficulty: [], series_max: [] };
+            //难度
+            var difficulty = data.Data.difficulty;
+            for (var i = 0; i < difficulty.length; i++) {
+                def_myData.xAxis_data[i] = difficulty[i].ND;
+                def_myData.series_difficulty[i] = difficulty[i].ExaAvg;
+                def_myData.series_stu[i] = difficulty[i].stuFZ;
+                def_myData.series_max[i] = difficulty[i].ExaMax;
+            }
+            AddRepDif(def_myData);
+
+            changeTableStyle();
+            data = null;
+
+
+        }
+
+
+        //清空学生信息记录
+        function ClearStuData() {
+            $("#div_sub_t").html("");
+
+            var subL = $("#tab_sub tr").length;
+            for (var m = 1; m < subL; m++) {
+                $('#tab_sub tr:eq(1)').remove();
+            }
+
+            var kno_l = $("#tab_kno tr").length;
+            for (var i = 1; i < kno_l; i++) {
+                $('#tab_kno tr:eq(1)').remove();
+            }
+
+            var omr_l = $("#tab_que_omr tr").length;
+            for (var i = 1; i < omr_l; i++) {
+                $('#tab_que_omr tr:eq(1)').remove();
+            }
+            $("#sp_que_omr").html("&nbsp;【客观题】");
+
+            var item_l = $("#tab_que_item tr").length;
+
+            for (var i = 1; i < item_l; i++) {
+                $('#tab_que_item tr:eq(1)').remove();
+            }
+            $("#sp_que_item").html("&nbsp;【主观题】");
+
+            $('#sp_eva').html("");
+            AddRepStu(null);
+            AddRepDif(null);
+            AddRepSubOffer(null);
+            AddRepRadar(null);
+        }
+
+
+
+
+
+
+        //学生科目雷达图
+        function AddRepRadar(myData) {
+            var polar_indicator = [{ text: '' }];
+            var series_z = [0];//Z分数
+
+            if (myData) {
+                if (myData.polar_indicator.length > 0) {
+                    polar_indicator = myData.polar_indicator;
+                    series_z = myData.series_z;
+
+                }
+
+            }
+
+            var myChart = echarts.init(document.getElementById('rep_sub_radar'), e_macarons);
+            var myColor = ['#ff7f50'];
+            var option = {
+                title: {
+                    text: "学科均衡",
+                    subtext: '反映学生各学科是否均衡，数值越大表明学科越有优势。',
+                    x: "center"
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    orient: 'vertical',
+                    x: 'right',
+                    y: 'bottom',
+                    data: ['Z分数']
+                },
+                color: myColor,
+                polar: [
+                    {
+                        indicator: polar_indicator
+                    }
+                ],
+                calculable: true,
+                series: [
+                {
+                    name: 'Z分数',
+                    type: 'radar',
+                    data: [
+                        {
+                            value: series_z,
+                            name: 'Z分数',
+                            itemStyle: {
+                                color: 'red'
+
+                            },
+                            label: {
+                                normal: {
+                                    show: true,
+                                    formatter: function (params) {
+                                        return params.value;
+                                    }
+                                }
+                            }
+                        }
+
+                    ]
+                }
+                ]
+            };
+            myChart.setOption(option);
+            //myChart.refresh()
+        }
+        //学生贡献
+        function AddRepSubOffer(myData) {
+            var xAxis_data = ['0'];
+            var series_offer = [0];//贡献
+            var title_text = "";//贡献
+            var series_stuScore = [0];//贡献
+            var series_Proportion = [0];
+
+            if (myData) {
+                if (myData.xAxis_data.length > 0) {
+                    xAxis_data = myData.xAxis_data;
+                    series_offer = myData.series_offer;
+                    series_Proportion = myData.series_Proportion;
+                    title_text = myData.title_text;
+                    for (var i = 0; i < series_offer.length; i++) {
+                        series_stuScore[i] = myData.stuScore;
+                    }
+                }
+            }
+
+
+
+
+            var myChart = echarts.init(document.getElementById('rep_sub_offer'), e_macarons);
+            var myColor = ['#83a6d1', '#FF0000'];
+            var option = {
+                title: {
+                    text: "达标情况",
+                    subtext: '反映该学科目标达成情况，柱形图表示4个目标，横线表示学生得分。',
+                    x: "center"
+                },
+                color: myColor,
+                tooltip: {
+                    trigger: 'axis', formatter: function (params) {
+
+                        return params[0].name + '<br/>'
+                               + '目标分数:' + params[0].value + '<br/>'
+                               + '学生得分:' + params[1].value + '<br/>'
+                               + '贡 献 值:' + (params[1].value - params[0].value);
+
+
+                    }
+                },
+
+                legend: {
+                    data: ['目标分数', '学生得分'], y: "bottom"
+                },
+                calculable: true,
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: xAxis_data
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        axisLabel: {
+                            formatter: '{value} '
+                        }
+                    }
+                ],
+                series: [
+                    {
+                        name: '目标分数',
+                        type: 'bar',
+                        itemStyle: {
+                            normal: {
+                                label: {
+                                    show: true
+                                }
+                            }
+                        },
+
+                        data: series_Proportion
+
+
+                    },
+                     {
+                         name: '学生得分',
+                         type: 'line',
+
+                         data: series_stuScore
+
+
+
+                     }
+                ]
+            };
+            myChart.setOption(option);
+            //myChart.refresh();
+        }
+
+
+        //难度级别
+        function AddRepDif(myData) {
+            var xAxis_data = ['0'];
+            var series_stu_poor = [0];//学生差分
+            var series_stu = [0];//学生得分
+            var series_difficulty = [0];//难度级别
+            var series_max = [0];//最高得分
+
+            if (myData) {
+                if (myData.xAxis_data.length > 0) {
+                    xAxis_data = myData.xAxis_data;
+                    series_stu = myData.series_stu;
+                    series_difficulty = myData.series_difficulty;
+                    series_max = myData.series_max;
+                    for (var i = 0; i < series_max.length; i++) {
+                        series_stu_poor[i] = series_max[i] - series_stu[i];
+                    }
+
+                }
+            }
+
+
+
+
+            var myChart = echarts.init(document.getElementById('rep_dif_abi'));
+            var myColor = ['#546579', '#43CD80', '#0F8FE8'];
+            var option = {
+                title: {
+                    text: '难度能力',
+                    subtext: '反映学生对不同难度试题的得分能力，X轴为难度，Y轴为分值。',
+                    x: "center" //标题水平方向位置
+                }
+             ,
+                color: myColor,
+                tooltip: {
+                    trigger: 'axis',
+                    formatter: function (params) {
+                        return params[0].name + '<br/>'
+                               + '总分: ' + (params[1].value + params[0].value) + '<br/>'
+                               + params[0].seriesName + ' : ' + params[0].value + '<br/>'
+                               + params[1].seriesName + ' : ' + params[1].value + '<br/>'
+                               + params[2].seriesName + ' : ' + params[2].value;
+                    }
+                },
+                legend: {
+                    data: ['学生得分', '学生失分', '平均得分'], selectedMode: false,
+                    y: "bottom"
+                },
+
+                calculable: true,
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: xAxis_data
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        axisLabel: {
+                            formatter: '{value} '
+                        }
+                    }
+                ],
+                series: [
+                    {
+                        name: '学生得分',
+                        type: 'bar',
+                        stack: 'sum',
+                        barCategoryGap: '50%',
+                        itemStyle: {
+                            normal: {
+                                color: 'tomato',
+                                barBorderColor: 'tomato',
+                                barBorderWidth: 2,
+                                barBorderRadius: 0,
+                                label: {
+                                    show: true, position: 'insideTop'
+                                }
+                            }
+                        },
+                        data: series_stu
+
+                    },
+                    {
+                        name: '学生失分',
+                        type: 'bar',
+                        stack: 'sum',
+                        itemStyle: {
+                            normal: {
+                                color: '#fff',
+                                barBorderColor: 'tomato',
+                                barBorderWidth: 2,
+                                barBorderRadius: 0,
+                                label: {
+                                    show: true,
+                                    position: 'top',
+                                    formatter: function (params) {
+                                        return params.value;
+                                        //for (var i = 0, l = option.xAxis[0].data.length; i < l; i++) {
+                                        //    if (option.xAxis[0].data[i] == params.name) {
+                                        //        return option.series[0].data[i] + params.value;
+                                        //    }
+                                        //}
+                                    },
+                                    textStyle: {
+                                        color: '#000'
+                                    }
+                                }
+                            }
+                        },
+                        data: series_stu_poor
+
+                    },
+                    {
+                        name: '平均得分',
+                        type: 'line',
+                        //itemStyle: {
+                        //    normal: {
+
+                        //        label: {
+                        //            show: true
+                        //        }
+                        //    }
+                        //},
+                        data: series_difficulty
+
+                    }
+                ]
+            };
+            myChart.setOption(option);
+            //myChart.refresh();
+        }
+
+        //学生位置
+        function AddRepStu(myData) {
+
+            var xAxis_data = ['0'];
+            var series_stu = [0];//人数
+            var markPoint = { xAxis: 0, yAxis: 0, value: "" };//学生当前位置
+            if (myData) {
+                if (myData.xAxis_data.length > 0) {
+                    xAxis_data = myData.xAxis_data;
+                    series_stu = myData.series_stu;
+                    markPoint = myData.markPoint;
+                }
+            }
+
+            var myChart = echarts.init(document.getElementById('rep_stu_place'), e_macarons);
+            var myColor = ['#ff7f50'];
+            var option = {
+                title: {
+                    text: '学生位置',
+                    subtext: 'X轴为分数段，Y轴为学生人数，红色标签表示学生所在位置。',
+                    x: "center" //标题水平方向位置
+                },
+                color: myColor,
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['人数'], y: "bottom"
+                },
+                calculable: true,
+                xAxis: [
+                    {
+                        type: 'category',
+
+                        data: xAxis_data
+
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+
+                        axisLabel: {
+                            formatter: '{value} '
+                        }
+                    }
+                ],
+                series: [
+
+                    {
+                        name: '人数',
+                        type: 'line',
+                        data: series_stu
+                        , markPoint: {
+                            data: [
+                                  { xAxis: markPoint.xAxis, yAxis: markPoint.yAxis }
+
+                            ]
+                        }
+                    }
+                ]
+            }
+            // 当xAxis为类目轴时，数值1会被理解为类目轴的index
+            myChart.setOption(option);
+            //myChart.refresh()
+        }
+
+
+
+        //开始加载数据
+        function LoadingPageInfo() {
+            LoadStuDataOK(data);
+
+        }
+
+
+
+
+    </script>
+
+
+    <style type="text/css">
+        .datagrid-header-rownumber, .datagrid-cell-rownumber {
+            width: 30px;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .img_box {
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .lab1 {
+            color: #FF0000;
+            text-decoration: underline;
+        }
+
+        .repTit {
+            text-align: center;
+            font: bold 22px/58px 黑体;
+            color: #796854;
+        }
+
+
+
+
+        *html, *html body /* 修正IE6振动bug */ {
+            background-image: url(about:blank);
+            background-attachment: fixed;
+        }
+
+        body, form {
+            height: auto;
+            background: #e6e6e6;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 10px 0px;
+        }
+
+        .logo {
+            background-image: url("data:image/gif;base64,R0lGODlhXgE8APcAAG58jdLW25SeqlRleaavubqHV6yzu7C2vllpfFRmeo2XpFtrfvHm3P///7uJWt3f47e8w4uVoVNkePf4+GNyhH6Kl1JjeEtdcmJxhMKdeubo6tfX19DDt01ec6Kps7SGXMrO01Jjd8HFzJafqurr7dTX23F+joaSoFFid+/w8U5gdUJVa7eCUG5ucYh3aUVYbVBhdl1tgHqGlU9hdaCAYsShgevs7ltod/L09f39/UlbcF9vgdDT2c28rGFwgkhacGNzhXiFlYSQnfb3+IGNnFdoe+nq7Gdsc0dZb+7w8ZKdqfn5+v7+/vv7+2d2h76PY4N1a3+Lmdve4v///uTm6VVlebmGVsjN07qIWJehrJylsMvQ1riFVL2NYP38/Li+xVpqfW17jLzCytKxkvDx8uzt71xsf+Lk6Pb292p4ivr28reEUs7S2MXK0Pn6+t7h5UpccWt6i4qVoufp61lqfWpsc5mirnaDk/r6+/Hy9KWstaqyvODj5rS6wq20vp6ostXZ3sPIzztPZmBpdcDFy2l3iYiToMefeOze0eTQvquzvM6/sHhxb7nAyOjXx6SBYfT19nyJmcGUaXSCkbG4wN7HsMacdb7EzLzBx+bn6tfb3sSZcbmIW6KqtbS7xMCRZtvAp3KAkLi/x3B+j5V7Zdi8oezu8K62wN3ErfXt51dmeFVmesulgZCbqNrc4LyLXPj4+bW8xauDX9TX3Orbzfv8/bW8w/T09f3+/lpnd2V0hox4aOHLt7K6w/fy7YqWo+nr7o+aqPz7+PLp4LGFXdPY3XRwb6Gps7uKW/z49fz8+sOXbvbv6Wh2h/z7/M2ph2VrdLyLW8mifPPs46Stt//+/oyYpbaHW+fp7XFvcFRleLN8SO7i1nF+j8+riZt9ZL2MX/7+/dbT0fr5+qmxuv79/FNkd7iGVfb193SAkPX2+FVleFVlepGapv79/tDU19bV0/3+/cOffd/Isc/BtNTQzFRkeNHGu2drc//+/+vr7te5nWhrc/Tz9cCYcXJvbyH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOmI3MWI0MmZmLTY0ZDgtY2I0NC1iNzZkLTkxM2NjMDAyMmQwMSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo0NTBENTA4NjhERUExMUU1QjYyNkU3RTZGRDU0NzkyRCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo0NTBENTA4NThERUExMUU1QjYyNkU3RTZGRDU0NzkyRCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6YjcxYjQyZmYtNjRkOC1jYjQ0LWI3NmQtOTEzY2MwMDIyZDAxIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOmI3MWI0MmZmLTY0ZDgtY2I0NC1iNzZkLTkxM2NjMDAyMmQwMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBv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");
+            background-position: 0px;
+            background-repeat: no-repeat;
+            float: left;
+            height: 62px;
+            padding-left: 10px;
+            width: 350px;
+        }
+
+        .top_wrap {
+            background: #546579 repeat-x center 50%;
+            height: 62px;
+            line-height: 20px;
+            overflow: hidden;
+        }
+
+        .wrap {
+            position: relative;
+            width: 1010px;
+            height: auto;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+
+
+        .hint {
+            color: #0000FF;
+            font-weight: bold;
+        }
+
+
+        .div_basic {
+            border: 1px solid #CBCBCB;
+            padding: 10px;
+            background: #F5F5F5;
+        }
+
+
+        .repDiv {
+            width: 1000px;
+            margin: 0 auto;
+            text-align: left;
+            font-size: 14px;
+            background-color: #ffffff;
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            border: 1px solid #a9a9a9;
+        }
+
+        .repTit {
+            text-align: center;
+            font: bold 22px/58px 黑体;
+            color: #796854;
+        }
+
+        .repDivTit div {
+            font: bold 16px 黑体;
+            height: 18px;
+            color: #796854;
+        }
+
+        .sub_font, .important {
+            font-size: 12px;
+            color: #CC0000;
+        }
+
+        .sub_font {
+            padding-left: 10px;
+        }
+        /*报表DIV样式*/
+        .div_Rep {
+            width: 998px;
+            height: 320px;
+        }
+
+        .div_RepR {
+            float: right;
+            width: 480px;
+            height: 300px;
+        }
+
+
+        .div_RepL {
+            float: left;
+            width: 480px;
+            height: 300px;
+        }
+
+        .repNewDivTit {
+            background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAIAAAAW4yFwAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpBOTBCRjUwNTU4NzNFMzExOTVFRUY0N0NEMEM3RUMzQSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCRUE5MUQyODQ4NEIxMUU0QUZDNkNBRTlCOEIxMUY4RiIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCRUE5MUQyNzQ4NEIxMUU0QUZDNkNBRTlCOEIxMUY4RiIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjAyMjVBQUI1QTU0N0U0MTE5Njk4QUJBMDlFNTUzQzRFIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkE5MEJGNTA1NTg3M0UzMTE5NUVFRjQ3Q0QwQzdFQzNBIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+FSUgSgAAABNJREFUeNpivnfvHhMDAwNAgAEAD8QCoAMcQcQAAAAASUVORK5CYII=")bottom repeat-x;
+            height: 50px;
+            line-height: 60px;
+            overflow: hidden;
+            color: #796854;
+            font-size: 18px;
+            margin-bottom: 10px;
+            *border-bottom: 2px solid #dedede;
+        }
+
+            .repNewDivTit b {
+                border-bottom: 2px solid #ff7f50;
+                padding-bottom: 7px;
+                padding-right: 10px;
+            }
+
+        .p_left td {
+            padding-left: 20px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+
+        .tab {
+            width: 998px;
+            border-collapse: collapse;
+            font-size: 13px;
+            border: solid 1px #dedede;
+        }
+
+
+
+            .tab td {
+                border: solid 1px #dedede;
+                padding: 5px;
+            }
+
+            .tab th {
+                border: solid 1px #dedede;
+                background: #EBECED;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                height: 20px;
+                text-align: center;
+                font-weight: normal;
+            }
+
+
+
+            .tab tr:hover {
+                background: #E6E6E6;
+            }
+
+        .in_ul {
+            list-style: none;
+            padding: 0 0 15px;
+        }
+
+            .in_ul li {
+                display: inline;
+                padding: 0 15px 0 5px;
+            }
+
+        .foot_wrap {
+            height: 50px;
+            background: #EEEEEE;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1">
+
+        <div class="top_wrap">
+
+            <div class="wrap">
+                <div class="logo"></div>
+
+            </div>
+        </div>
+        <div class="repDiv">
+
+            <div class="repTit">学生成绩分析报告</div>
+
+
+            <div class="div_basic">
+                <span style="margin-right: 5px">考试：<b>2018广州一测</b>
+
+                </span>
+
+                <br />
+                <br />
+
+                <span style="margin-left: 5px" id="schoolControl">学校:<b>广州大学附属中学大学城校区</b>
+                </span>
+                <span style="margin-left: 5px" id="classControl">
+                </span>
+                <span style="margin-left: 5px">学生:<b>林诗尉</b>
+                </span>
+                <span style="margin-left: 5px">科目:<b>英语</b>
+                </span>
+
+            </div>
+
+            <br />
+            <div id="div_eva" class="repNewDivTit">
+                <b>总体评价</b><span id="sp_eva" class='sub_font'></span>
+            </div>
+            <div class="div_Rep">
+                <div id="rep_stu_place" class="div_RepL"></div>
+                <div id="rep_dif_abi" class="div_RepR"></div>
+            </div>
+            <div class="div_Rep">
+                <div id="rep_sub_offer" class="div_RepL"></div>
+                <div id="rep_sub_radar" class="div_RepR"></div>
+            </div>
+
+            <br />
+            <div id="div_sub" class="repNewDivTit">
+                <b>学科分析</b><span id="div_sub_t" class="sub_font"></span>
+            </div>
+            <table id="tab_sub" class="tab">
+                <tbody>
+
+                    <tr align="center" class="tabTitle">
+                        <th>科目</th>
+                        <th>原始分</th>
+                        <th>标准分</th>
+                        <th>百分等级</th>
+                        <th>Z分数</th>
+                        <th>成绩等级</th>
+                        <th>超均率%</th>
+                        <th>比均率%</th>
+                        <th>班级排位</th>
+                        <th>学校排位</th>
+                        <th>全体排位</th>
+                    </tr>
+
+                </tbody>
+                <tr align="center">
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+
+            <br />
+            <div id="div_kno" class="repNewDivTit">
+                <b>知识点分析</b><span id="Span1" class="sub_font">【建议：红色的知识点需要在后期加强训练！】</span>
+            </div>
+            <table id="tab_kno" class="tab">
+                <tbody>
+
+                    <tr align="center" class="tabTitle">
+                        <th width="250" height="21">知识点</th>
+                        <th width="80" style="text-align: right">满分值&nbsp;</th>
+                        <th width="80">难度</th>
+                        <th width="80" style="text-align: right">学生得分&nbsp;</th>
+                        <th width="90" style="text-align: right">学生得分率&nbsp;</th>
+                        <th width="80" style="text-align: right">Z分数&nbsp;</th>
+                        <th width="80" style="text-align: right">班级均分&nbsp;</th>
+                        <th width="80" style="text-align: right">学校均分&nbsp;</th>
+                        <th width="80" style="text-align: right">全体均分&nbsp;</th>
+                        <th width="110" style="text-align: right">知识点达标分数&nbsp;</th>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <br />
+            <div id="div_que_omr" class="repNewDivTit">
+                <b>客观题分析</b><span id="sp_que_omr" class="sub_font"></span>
+            </div>
+            <table id="tab_que_omr" class="tab">
+                <tbody>
+
+                    <tr align="center" class="tabTitle">
+                        <th width="80" height="21">题号</th>
+                        <th width="60">答案</th>
+                        <th width="60" style="text-align: right">满分&nbsp;</th>
+                        <th width="60">选择</th>
+                        <th width="80" style="text-align: right">学生实得分&nbsp;</th>
+                        <th width="65" style="text-align: right">班均分&nbsp;</th>
+                        <th width="65" style="text-align: right">学校均分&nbsp;</th>
+                        <th width="65" style="text-align: right">全体均分&nbsp;</th>
+                        <th width="60">难度</th>
+                        <th width="190">知识点说明</th>
+                        <th width="80">掌握情况</th>
+                        <th width="80">异常情况</th>
+                        <th width="90" style="text-align: right">试题达标分数</th>
+                    </tr>
+
+                </tbody>
+
+
+
+            </table>
+
+            <br />
+            <div id="div_que_item" class="repNewDivTit">
+                <b>主观题分析</b><span id="sp_que_item" class="sub_font"></span>
+            </div>
+            <table id="tab_que_item" class="tab">
+                <tbody>
+                    <tr align="center" class="tabTitle">
+                        <th width="80px" height="21">题号</th>
+                        <th width="60px">小题号</th>
+                        <th style="text-align: right; width: 60px">满分&nbsp;</th>
+                        <th style="text-align: right; width: 60px">最高分&nbsp;</th>
+                        <th style="text-align: right; width: 70px">学生实得分&nbsp;</th>
+                        <th style="text-align: right; width: 50px">班均分&nbsp;</th>
+                        <th style="text-align: right; width: 60px">学校均分&nbsp;</th>
+                        <th style="text-align: right; width: 60px">全体均分&nbsp;</th>
+                        <th width="50px">难度</th>
+                        <th width="180px">知识点说明</th>
+                        <th width="70px">掌握情况</th>
+                        <th width="60px">异常情况</th>
+                        <th style="text-align: right; width: 90px">试题达标分数</th>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <br />
+    </form>
+</body>
+</html>
